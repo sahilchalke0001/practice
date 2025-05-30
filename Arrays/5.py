@@ -27,13 +27,8 @@ Average/Worst	         O(N × M)	         O(M)
 
 # Summary of Steps:
 # Initialize res as empty.
-
 # Loop through character positions of the first string.
-
 # For each character position i, check if all strings have the same character at that index.
-
 # If any string ends early or has a mismatch, return current res.
-
 # If all match, add character to res.
-
 # Return final result.
