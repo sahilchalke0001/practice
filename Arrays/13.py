@@ -2,7 +2,7 @@
 
 # Input: nums = [2,1,0]
 
-# Output: [0,1,2]
+ Output: [0,1,2]
 
 
 class Solution:
