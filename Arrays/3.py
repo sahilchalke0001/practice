@@ -1,37 +1,41 @@
-# 242. Valid Anagram
-# Input: s = "racecar", t = "carrace"
-
-# Output: true
-
-from collections import Counter
+26. Remove Duplicates from Sorted Array
 class Solution(object):
-    def isAnagram(self, s, t):
-        return Counter(s)==Counter(t)
+    def removeDuplicates(self, nums):
+        if not nums:
+            return 0
 
-T-O(n)
-S-O(1)
+        # Initialize the slow pointer at index 0
+        i = 0  
 
-class Solution:
-    def isAnagram(self, s: str, t: str) -> bool:
-        if len(s) != len(t):
-            return False
-            
-        return sorted(s) == sorted(t)
+        # Fast pointer starts from index 1
+        for j in range(1, len(nums)):
+            if nums[j] != nums[i]:
+                # Found a new unique element
+                i += 1         # Move slow pointer
+                nums[i] = nums[j]  # Replace with unique element
 
-T-O(nlogn + mlogm)
-S-O(n+m)
+        return i + 1 
 
-class Solution:
-    def isAnagram(self, s: str, t: str) -> bool:
-        if len(s) != len(t):
-            return False
+Time and Space Complexity:
+Time Complexity: O(n)
+Each element is visited once.
 
-        countS, countT = {}, {}
+Space Complexity: O(1)
+It modifies the list in-place with no extra memory.
 
-        for i in range(len(s)):
-            countS[s[i]] = 1 + countS.get(s[i], 0)
-            countT[t[i]] = 1 + countT.get(t[i], 0)
-        return countS == countT
+class Solution(object):
+    def removeDuplicates(self, nums):
+        # Use a set to remove duplicates, then sort it (since the original list is sorted)
+        unique_nums = sorted(set(nums))  # ✅ Now it's indexable set does not have indexes...
+        k = len(unique_nums)
 
-T-O(n)
-SO(n)
+        # Overwrite nums with unique values
+        for i in range(k):
+            nums[i] = unique_nums[i]
+
+        return k
+
+Time and Space Complexity:
+Time Complexity: O(n)
+
+Space Complexity: O(n)

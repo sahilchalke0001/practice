@@ -1,20 +1,28 @@
-# 1. Two Sum
-# Input: 
-# nums = [3,4,5,6], target = 7
-
-# Output: [0,1]
+80. Remove Duplicates from Sorted Array II
+from typing import List
 
 class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
-        indices = {}  # val -> index
+    def removeDuplicates(self, nums: List[int]) -> int:
+        # If the list has 2 or fewer elements, it's already valid
+        if len(nums) <= 2:
+            return len(nums)
 
-        for i, n in enumerate(nums):
-            indices[n] = i
+        # 'i' is the pointer where we place allowed values
+        i = 2
 
-        for i, n in enumerate(nums):
-            diff = target - n
-            if diff in indices and indices[diff] != i:
-                return [i, indices[diff]]
+        # Start from index 2 since first two can always stay
+        for j in range(2, len(nums)):
+            # Check if the current number is not the same as nums[i-2]
+            # This ensures each element appears at most twice
+            if nums[j] != nums[i - 2]:
+                nums[i] = nums[j]
+                i += 1
 
-T-O(n)
-S-O(n)
+        return i  # 'i' is the new length of the array
+
+Time and Space Complexity:
+Time Complexity: O(n)
+One pass through the array.
+
+Space Complexity: O(1)
+Done in-place without extra memory.

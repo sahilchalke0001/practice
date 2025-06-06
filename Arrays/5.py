@@ -1,34 +1,25 @@
-# 14. Longest Common Prefix
+Leetcode 169. Majority Element
+class Solution:
+    def majorityElement(self, nums):
+        
+        count = 0
+        candidate = None
 
-# Input: strs = ["bat","bag","bank","band"]
+        for num in nums:
+            if count == 0:
+                candidate = num  # Choose new candidate
 
-# Output: "ba"
+            # Increase or decrease the count
+            if num == candidate:
+                count += 1
+            else:
+                count -= 1
 
-class Solution(object):
-    def longestCommonPrefix(self, strs):
-        """
-        :type strs: List[str]
-        :rtype: str
-        """
-        if not strs:
-            return ""
+        # Since it's guaranteed that a majority element exists, we return the candidate
+        return candidate
 
-        res = ""
-        for i in range(len(strs[0])):
-            for s in strs:
-                if i == len(s) or s[i] != strs[0][i]:
-                    return res
-            res += strs[0][i] 
-        return res
 
-Case	        Time Complexity	Space Complexity
-Best Case	                 O(1)	         O(1)
-Average/Worst	         O(N × M)	         O(M) 
-
-# Summary of Steps:
-# Initialize res as empty.
-# Loop through character positions of the first string.
-# For each character position i, check if all strings have the same character at that index.
-# If any string ends early or has a mismatch, return current res.
-# If all match, add character to res.
-# Return final result.
+Boyer-Moore Voting Algorithm
+Time Complexity: O(n)
+Space Complexity: O(1)
+        

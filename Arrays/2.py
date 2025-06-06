@@ -1,31 +1,23 @@
-# 217. Contains Duplicate
+27. Remove Element
+from typing import List
 
-# Input: nums = [1, 2, 3, 3]
+class Solution:
+    def removeElement(self, nums: List[int], val: int) -> int:
+        # Pointer to track the next position to place non-val element
+        k = 0  
 
-# Output: true
+        # Traverse the entire array
+        for i in range(len(nums)):
+            if nums[i] != val:
+                # If current element is not val, place it at index k
+                nums[k] = nums[i]
+                k += 1  # Increment k for next placement
 
-class Solution(object):
-    def containsDuplicate(self, nums):
-        
-        nums.sort()
-        for i in range(len(nums) - 1):
-            if nums[i] == nums[i + 1]:
-                return True
-        return False
+        # After loop, k is the new length of the array without `val`
+        return k
 
-Time & Space Complexity
-Time complexity: 
-O(nlogn)
-Space complexity: 
-O(1) or O(n) depending on the sorting algorithm.
+Time Complexity: O(n)
+Every element is visited once.
 
-class Solution(object):
-    def containsDuplicate(self, nums):
-        s=set(nums)
-        if len(s)==len(nums):
-            return False
-        else:
-            return True
-
-T-O(n)
-S-O(n)
+Space Complexity: O(1)
+No extra space is used; the operation is done in-place.

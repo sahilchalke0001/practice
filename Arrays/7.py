@@ -1,16 +1,18 @@
-# 27. Remove Element 
-# Input: nums = [1,1,2,3,4], val = 1
+ 121: Best Time to Buy and Sell Stock
+class Solution(object):
+    def maxProfit(self, prices):
+       
+        min_price = prices[0]  # Minimum price seen so far
+        max_profit = 0            # Maximum profit seen so far
 
-# Output: [2,3,4]
+        for price in prices:
+            if price < min_price:
+                min_price = price  # Found a lower price to buy
+            else:
+                profit = price - min_price  # Calculate profit if sold today
+                max_profit = max(max_profit, profit)  # Update max profit if better
 
-class Solution:
-    def removeElement(self, nums: list[int], val: int) -> int:
-        k = 0
-        for i in range(len(nums)):
-            if nums[i] != val:
-                nums[k] = nums[i]
-                k += 1
-        return k
+        return max_profit
 
-t-O(N)
-s-O(1)
+Time Complexity: O(n)
+Space Complexity: O(1)

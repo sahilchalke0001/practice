@@ -1,20 +1,14 @@
-# 169. Majority Element
-# Input: nums = [5,5,1,1,1,5,5]
+55. Jump Game
+class Solution(object):
+    def canJump(self, nums):
+        max_reach = 0  # The farthest index we can reach
 
-# Output: 5
-Sorting
-class Solution:
-    def majorityElement(self, nums: List[int]) -> int:
-        nums.sort()
-        return nums[len(nums) // 2]
+        for i in range(len(nums)):
+            if i > max_reach:
+                return False  # Current position is unreachable
+            max_reach = max(max_reach, i + nums[i])  # Update max reach
 
-Boyer-Moore Voting Algorithm
-class Solution:
-    def majorityElement(self, nums):
-        res = count = 0
+        return True  # We can reach the end
 
-        for num in nums:
-            if count == 0:
-                res = num
-            count += (1 if num == res else -1)
-        return res
+Time Complexity: O(n)
+Space Complexity: O(1)
